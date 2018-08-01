@@ -37,7 +37,7 @@ void PRAJ_ESPNowModule::config(CMMC_System *os, AsyncWebServer* server) {
 } 
 
 void PRAJ_ESPNowModule::loop() {
-  if(digitalRead(0) == LOW) {
+  if(analogRead(A0) >= 15) {
     // dirty = 1;
     isCrashed = 1;
     Serial.println("set crash state ...");
@@ -144,9 +144,9 @@ void PRAJ_ESPNowModule::_init_simple_pair() {
 
 void PRAJ_ESPNowModule::_go_sleep(uint32_t deepSleepM) {
   // deepSleepM = 1;
-  Serial.printf("\r\nGo sleep for %lu min.\r\n", deepSleepM);
+  Serial.printf("\r\nGo sleep for %lu seconds.\r\n", deepSleepM);
   Serial.println("bye!");
   
-  ESP.deepSleep(deepSleepM * 60e6);
+  ESP.deepSleep(deepSleepM * 1e6);
   Serial.println("not be reached here.");
 } 
