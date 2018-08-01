@@ -51,10 +51,10 @@ void CMMC_Legend::setup() {
 void CMMC_Legend::init_gpio() {
   Serial.begin(57600);
   Serial.println("OS::Init GPIO..");
-  pinMode(15, INPUT);
+  pinMode(13, INPUT_PULLUP);
   blinker = new CMMC_LED;
   blinker->init();
-  blinker->setPin(16);
+  blinker->setPin(2);
   Serial.println();
   blinker->blink(500);
   delay(10);
